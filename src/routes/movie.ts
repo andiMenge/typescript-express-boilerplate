@@ -7,12 +7,12 @@ export class Routes {
   public routes(app): void {   
   
     // Middlewares
-    const logger = (req: Request, res: Response, next: NextFunction) => {
+    const loggerMiddleware = (req: Request, res: Response, next: NextFunction) => {
       console.log(`${req.method} ${req.originalUrl} ${res.statusCode}`);
       next()
     }
 
-    const authentication = (req: Request, res: Response, next: NextFunction) => {
+    const authMiddleware = (req: Request, res: Response, next: NextFunction) => {
       if (req.query.key !== '78942ef2c1c98bf10fca09c808d718fa3734703e') {
         res.status(401).send('You shall not pass!')
       } else {
@@ -22,7 +22,7 @@ export class Routes {
 
     // Routes
     app.route('/')
-    .all(logger)
+    .all(loggerMiddleware)
     .get((req: Request, res: Response) => {            
       res.status(200).send({
         message: '200 OK'
@@ -30,7 +30,7 @@ export class Routes {
     })
 
     app.route('/movies')
-    .all(logger)
+    .all(loggerMiddleware)
     .get(this.contactController.getMovies)
     .post(this.contactController.createMovie);
   }
