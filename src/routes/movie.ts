@@ -1,8 +1,8 @@
 import {Request, Response, NextFunction} from "express";
-import { ContactController } from "../controllers/movie";
+import { MovieController } from "../controllers/movie";
 
 export class Routes { 
-  public contactController: ContactController = new ContactController() 
+  public MovieController: MovieController = new MovieController() 
   
   public routes(app): void {   
   
@@ -31,7 +31,7 @@ export class Routes {
 
     app.route('/movies')
     .all(loggerMiddleware)
-    .get(this.contactController.getMovies)
-    .post(this.contactController.createMovie);
+    .get(this.MovieController.getMovies)
+    .post(this.MovieController.createMovie);
   }
 }
