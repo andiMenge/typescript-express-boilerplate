@@ -7,7 +7,7 @@ const Movie = mongoose.model('Movie', MovieSchema);
 
 const tmdbUrl = 'https://api.themoviedb.org/3/'
 const tmdbEndpoint = 'find'
-const tmdbApiKey = '***REMOVED***'
+const tmdbApiKey = process.env.TMDB_API_KEY
 const imdbURL = 'https://www.imdb.com/title/tt2274648/'
 
 export class MovieController {
