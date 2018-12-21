@@ -3,7 +3,7 @@ import { MovieController } from "../controllers/movie";
 
 export class Routes { 
   public MovieController: MovieController = new MovieController() 
-  
+
   public routes(app): void {   
   
     // Middlewares
@@ -32,6 +32,6 @@ export class Routes {
     app.route('/movies')
     .all(loggerMiddleware)
     .get(this.MovieController.getMovies)
-    .post(this.MovieController.createMovie);
+    .post((req, res) => this.MovieController.createMovie(req, res));
   }
 }
