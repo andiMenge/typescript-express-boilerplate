@@ -1,34 +1,26 @@
 {
-  "name": "tm-checker",
+  "name": "express-boilerplate",
   "version": "0.0.1",
-  "description": "check trademark names",
-  "main": "index.js",
+  "description": "rename me",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc",
-    "dev": " PORT=3000 ts-node ./src/server.ts",
+    "dev": "PORT=3000 ts-node ./src/server.ts",
     "start": "node ./dist/server.js",
     "prod": "npm run build && npm run start",
     "postinstall": "tsc"
   },
-  "engines": {
-    "node": "11.8.0"
-  },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@types/cheerio": "^0.22.11",
     "@types/express": "^4.17.0",
     "@types/node": "^12.0.4",
-    "cheerio": "^1.0.0-rc.3",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "morgan": "^1.9.1",
-    "puppeteer": "^1.17.0",
     "typescript": "^3.5.1"
   },
   "devDependencies": {
-    "@types/puppeteer": "^1.12.4",
     "eslint": "^5.16.0",
     "eslint-config-prettier": "^4.3.0",
     "eslint-plugin-prettier": "^3.1.0",
