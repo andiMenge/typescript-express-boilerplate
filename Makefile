@@ -1,7 +1,15 @@
-all:
+herokuProcessType := web
+apiKey := $(shell pass spacegoats/tm-check-api-key)
 
-db:
-	@docker run -d -p 27017:27017 mongo
+herokuLogin:
+	@heroku container:login
 
-setEnv:
-	@. src/config/secrets.env
+herokuPush:
+	@heroku container:push ${herokuProcessType}
+
+herokuDeploy: herokuPush
+	@heroku container:release ${herokuProcessType}
+	@heroku ps:scale ${herokuProcessType}=1
+
+request:
+	@http ':3000/tmdn?tmName=varento' key:${apiKey}
