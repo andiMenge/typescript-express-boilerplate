@@ -2,6 +2,7 @@ import express from 'express'
 import * as bodyParser from 'body-parser'
 import morgan from 'morgan'
 import router from './router'
+import cors from 'cors'
 
 export const app = express()
 
@@ -14,6 +15,7 @@ function errorHandler(err, req, res, next) {
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(morgan('tiny'))
+app.use(cors())
 app.use('/', router)
 // Error handler goes last
 app.use(errorHandler)
