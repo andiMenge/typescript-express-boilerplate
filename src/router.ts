@@ -1,5 +1,5 @@
 import express from 'express'
-import routes  from './helloWorld/helloWordHandlers'
+const helloWorld = require('./helloWorld/helloWordHandlers')
 
 const router = express.Router()
 
@@ -7,6 +7,6 @@ router.get('/health', function(req, res) {
   res.sendStatus(200)
 })
 
-router.use(routes)
+router.use('/helloWorld', helloWorld)
 
 export default router
