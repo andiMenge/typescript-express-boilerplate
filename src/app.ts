@@ -1,34 +1,27 @@
-import * as express from "express";
-import * as bodyParser from "body-parser";
-import { Routes } from "./routes/movie";
-import * as mongoose from "mongoose";
+import express from 'express'
+import { Request, Response, NextFunction } from 'express'
+import * as bodyParser from 'body-parser'
+import morgan from 'morgan'
+import router from './router'
+import cors from 'cors'
 
-class App {
+export const app = express()
 
-    public app: express.Application;
-    public routePrv: Routes = new Routes();
-    public mongoUrl: string = 'mongodb://127.0.0.1/db';  
-    //public mongoUrl: string = 'mongodb://user:password@127.0.0.1:27017/db';
-
-    constructor() {
-        this.app = express();
-        this.config();        
-        this.routePrv.routes(this.app);     
-        this.mongoSetup();
-    }
-
-    private config(): void{
-        this.app.use(bodyParser.json());
-        this.app.use(bodyParser.urlencoded({ extended: false }));
-        // serving static files 
-        this.app.use(express.static('src/public'));
-    }
-
-    private mongoSetup(): void{
-        mongoose.Promise = global.Promise;
-        mongoose.connect(this.mongoUrl);        
-    }
-
+// Custom error handler
+function errorHandler(err: Error, req: Request, res: Response, next: NextFunction) {
+  console.error(err.stack)
+  res.status(500).json({ error: err.message })
 }
 
-export default new App().app;
+// Default route
+function defaultRoute(req: Request, res: Response, next: NextFunction) {
+  res.sendStatus(404)
+}
+
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(morgan('tiny'))
+app.use(cors())
+app.use('/', router)
+app.use(defaultRoute) // default route has to be last route
+app.use(errorHandler) // Error handler goes last

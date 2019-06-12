@@ -1,3 +1,11 @@
-# TypeScript-Express-Boilerplate
+# Typescript Express Boilerplate
 
-Minimal boilerplate for Typescript@Express App.
+> Simple boilerplate code for a Express based REST API.
+
+## Features
+
+- CORS
+- Logger
+- Json Error handler
+- Modular Router
+- Component Folder Structure
