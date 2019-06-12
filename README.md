@@ -6,6 +6,6 @@
 
 - CORS
 - Logger
-- Json Error handler
+- JSON Error handler
 - Modular Router
 - Component Folder Structure
