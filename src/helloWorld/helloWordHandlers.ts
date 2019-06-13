@@ -9,4 +9,4 @@ router.get('/hello', (req, res) => {
   res.send({ msg: greeting })
 })
 
-module.exports = router
+export default router

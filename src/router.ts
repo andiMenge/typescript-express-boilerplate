@@ -1,5 +1,5 @@
 import express from 'express'
-const helloWorld = require('./helloWorld/helloWordHandlers') // this registers a routes from the helloWorld Component
+import helloWorldRoutes from './helloWorld/helloWordHandlers'
 
 const router = express.Router()
 
@@ -8,6 +8,6 @@ router.get('/health', function(req, res) {
   res.sendStatus(200)
 })
 
-router.use('/helloWorld', helloWorld) // use routes from hello world component
+router.use('/helloWorld', helloWorldRoutes) // use routes from hello world component
 
 export default router
